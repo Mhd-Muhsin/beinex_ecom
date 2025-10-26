@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../domain/entities/product_entity.dart';
+import '../pages/product_detail_page.dart';
 
 class ProductTile extends StatelessWidget {
   final Product product;
@@ -10,7 +11,7 @@ class ProductTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: InkWell(
-        // onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => ProductDetailPage(product: product))),
+        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => ProductDetailPage(product: product))),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
