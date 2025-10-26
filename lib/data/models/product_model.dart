@@ -1,17 +1,17 @@
-import 'package:beinex_ecom/domain/entities/product_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
+import '../../domain/entities/product.dart';
 
 part 'product_model.g.dart';
 
-@JsonSerializable(explicitToJson: true)
-class ProductModel{
+@JsonSerializable()
+class ProductModel {
   final int id;
   final String title;
-  final double price;
+  final num price;
   final String description;
   final String category;
   final String image;
-  final Rating rating;
+  final Rating? rating;
 
   ProductModel({
     required this.id,
@@ -20,13 +20,17 @@ class ProductModel{
     required this.description,
     required this.category,
     required this.image,
-    required this.rating,
+    this.rating,
   });
+
+  factory ProductModel.fromJson(Map<String, dynamic> json) => _$ProductModelFromJson(json);
+  Map<String, dynamic> toJson() => _$ProductModelToJson(this);
+
   Product toEntity(int initialStock) {
     return Product(
       id: id,
       title: title,
-      price: price,
+      price: (price as num).toDouble(),
       description: description,
       category: category,
       image: image,
@@ -34,25 +38,17 @@ class ProductModel{
       stock: initialStock,
     );
   }
-  factory ProductModel.fromJson(Map<String, dynamic> json) =>
-      _$ProductModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ProductModelToJson(this);
 }
 
 @JsonSerializable()
 class Rating {
-  final double rate;
+  final num rate;
   final int count;
 
-  Rating({
-    required this.rate,
-    required this.count,
-  });
+  Rating({required this.rate, required this.count});
+
   double get rateDouble => (rate as num).toDouble();
 
-  factory Rating.fromJson(Map<String, dynamic> json) =>
-      _$RatingFromJson(json);
-
+  factory Rating.fromJson(Map<String, dynamic> json) => _$RatingFromJson(json);
   Map<String, dynamic> toJson() => _$RatingToJson(this);
 }

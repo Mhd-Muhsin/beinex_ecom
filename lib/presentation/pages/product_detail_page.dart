@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import '../../core/colors.dart';
+import '../../domain/entities/product.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../domain/entities/product_entity.dart';
 import '../blocs/cart/cart_bloc.dart';
+import 'cart_page.dart';
+import 'package:badges/badges.dart' as badges;
 
 class ProductDetailPage extends StatefulWidget {
   final Product product;
@@ -19,11 +21,25 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
   Widget build(BuildContext context) {
     final stock = widget.product.stock;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          badges.Badge(
+            position: badges.BadgePosition.topEnd(top: 0, end: 3),
+            badgeContent: Text(
+              BlocProvider.of<CartBloc>(context, listen: true).cart.length.toString(),
+              style: const TextStyle(color: Colors.white, fontSize: 10),
+            ),
+            child: IconButton(
+              icon: Icon(Icons.shopping_cart_outlined),
+              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const CartPage())),
+            ),
+          )
+        ],
+      ),
       body: ListView(
         padding: const EdgeInsets.all(12),
         children: [
-          AspectRatio(aspectRatio: 1, child: Image.network(widget.product.image, fit: BoxFit.contain)),
+          AspectRatio(aspectRatio: 1.4, child: Image.network(widget.product.image, fit: BoxFit.contain)),
           const SizedBox(height: 12),
           Text(widget.product.title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
