@@ -6,8 +6,6 @@ const Color greenColor = Color.fromARGB(255, 151, 198, 153);
 
 const Color greyColor = Colors.grey;
 
-const Color redColor = Colors.red;
-
 const Color blackColor = Colors.black;
 
 const Color yellowColor = Color(0xffF29D38);

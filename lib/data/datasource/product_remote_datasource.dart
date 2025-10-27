@@ -3,11 +3,11 @@ import 'package:http/http.dart' as http;
 import '../models/product_model.dart';
 import '../../core/constants.dart';
 
-abstract class RemoteDataSource {
+abstract class ProductRemoteDataSource {
   Future<List<ProductModel>> fetchProducts();
 }
 
-class RemoteDataSourceImpl implements RemoteDataSource {
+class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
   final client = http.Client();
 
   @override

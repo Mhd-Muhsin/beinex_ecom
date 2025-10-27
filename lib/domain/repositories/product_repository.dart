@@ -1,8 +1,5 @@
-import '../entities/product.dart';
+import 'package:beinex_ecom/domain/entities/product_entity.dart';
 
 abstract class ProductRepository {
   Future<List<Product>> getProducts();
-  int getStockForProduct(int id);
-  void reduceStock(int id, int amount);
-  void increaseStock(int id, int amount);
 }

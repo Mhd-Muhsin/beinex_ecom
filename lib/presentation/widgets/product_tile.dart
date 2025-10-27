@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../domain/entities/product.dart';
+
+import '../../domain/entities/product_entity.dart';
 import '../pages/product_detail_page.dart';
 
 class ProductTile extends StatelessWidget {
@@ -22,7 +23,7 @@ class ProductTile extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Text('\$ ${product.price.toStringAsFixed(2)}', style: TextStyle(color: Colors.green),),
+              child: Text('\$ ${product.price.toStringAsFixed(2)}'),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),

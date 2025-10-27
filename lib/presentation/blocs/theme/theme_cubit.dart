@@ -7,7 +7,6 @@ const _kPrefKeyIsDark = 'pref_is_dark';
 class ThemeCubit extends Cubit<ThemeMode> {
   ThemeCubit(super.initialState);
 
-  /// Factory initializer that loads saved preference (async)
   static Future<ThemeCubit> create() async {
     final prefs = await SharedPreferences.getInstance();
     final isDark = prefs.getBool(_kPrefKeyIsDark) ?? false;

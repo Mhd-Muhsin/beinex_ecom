@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
-import '../../../domain/entities/product.dart';
+
+import '../../../domain/entities/product_entity.dart';
 import '../../../domain/usecases/get_products_usecase.dart';
+
 part 'product_event.dart';
 part 'product_state.dart';
 
