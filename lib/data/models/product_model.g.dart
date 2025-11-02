@@ -7,14 +7,15 @@ part of 'product_model.dart';
 // **************************************************************************
 
 ProductModel _$ProductModelFromJson(Map<String, dynamic> json) => ProductModel(
-  id: (json['id'] as num).toInt(),
-  title: json['title'] as String,
-  price: (json['price'] as num).toDouble(),
-  description: json['description'] as String,
-  category: json['category'] as String,
-  image: json['image'] as String,
-  rating: Rating.fromJson(json['rating'] as Map<String, dynamic>),
-);
+      id: (json['id'] as num).toInt(),
+      title: json['title'] as String,
+      price: (json['price'] as num).toDouble(),
+      description: json['description'] as String,
+      category: json['category'] as String,
+      image: json['image'] as String,
+      rating: Rating.fromJson(json['rating'] as Map<String, dynamic>),
+      stock: (json['stock'] as num?)?.toInt(),
+    );
 
 Map<String, dynamic> _$ProductModelToJson(ProductModel instance) =>
     <String, dynamic>{
@@ -25,14 +26,15 @@ Map<String, dynamic> _$ProductModelToJson(ProductModel instance) =>
       'category': instance.category,
       'image': instance.image,
       'rating': instance.rating.toJson(),
+      'stock': instance.stock,
     };
 
 Rating _$RatingFromJson(Map<String, dynamic> json) => Rating(
-  rate: (json['rate'] as num).toDouble(),
-  count: (json['count'] as num).toInt(),
-);
+      rate: (json['rate'] as num).toDouble(),
+      count: (json['count'] as num).toInt(),
+    );
 
 Map<String, dynamic> _$RatingToJson(Rating instance) => <String, dynamic>{
-  'rate': instance.rate,
-  'count': instance.count,
-};
+      'rate': instance.rate,
+      'count': instance.count,
+    };

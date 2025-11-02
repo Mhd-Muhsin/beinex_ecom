@@ -6,7 +6,7 @@ class Product {
   final String category;
   final String image;
   final double rating;
-  final int stock;
+  int stock;
 
 
   Product({

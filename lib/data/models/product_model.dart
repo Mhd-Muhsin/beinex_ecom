@@ -1,6 +1,9 @@
 import 'package:beinex_ecom/domain/entities/product_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../core/constants.dart';
+import '../datasource/local_datasource/product_hive_model.dart';
+
 part 'product_model.g.dart';
 
 @JsonSerializable(explicitToJson: true)
@@ -12,6 +15,7 @@ class ProductModel{
   final String category;
   final String image;
   final Rating rating;
+  int? stock;
 
   ProductModel({
     required this.id,
@@ -21,9 +25,24 @@ class ProductModel{
     required this.category,
     required this.image,
     required this.rating,
+    this.stock,
   });
-  Product toEntity(int initialStock) {
+
+  Product toEntity() {
     return Product(
+      id: id,
+      title: title,
+      price: price,
+      description: description,
+      category: category,
+      image: image,
+      rating: rating?.rateDouble ?? 0.0,
+      stock: stock ?? Constants.initialStock,
+    );
+  }
+
+  ProductHiveModel toProductHiveModel(int initialStock) {
+    return ProductHiveModel(
       id: id,
       title: title,
       price: price,
@@ -34,6 +53,7 @@ class ProductModel{
       stock: initialStock,
     );
   }
+
   factory ProductModel.fromJson(Map<String, dynamic> json) =>
       _$ProductModelFromJson(json);
 

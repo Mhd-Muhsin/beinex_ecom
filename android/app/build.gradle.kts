@@ -8,11 +8,15 @@ plugins {
 android {
     namespace = "com.example.beinex_ecom"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "27.0.12077973"
 
     compileOptions {
+        // you were using Java 11 — keep it
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+
+        // enable core library desugaring required by some AARs (e.g. flutter_local_notifications)
+        isCoreLibraryDesugaringEnabled = true
     }
 
     kotlinOptions {
@@ -41,4 +45,16 @@ android {
 
 flutter {
     source = "../.."
+}
+
+// Add dependencies at module level
+dependencies {
+    // keep any existing implementation(...) or other dependencies you already have here
+
+    // core library desugaring library — required when isCoreLibraryDesugaringEnabled = true
+    // recommended version: 1.1.5 (works with many AGP/Kotlin setups). If unresolved, try the `add(...)` form below.
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.2.2")
+
+    // If your Gradle/Kotlin DSL complains about `coreLibraryDesugaring` symbol, replace the above line with:
+    // add("coreLibraryDesugaring", "com.android.tools:desugar_jdk_libs:1.1.5")
 }

@@ -11,3 +11,5 @@ const Color blackColor = Colors.black;
 const Color yellowColor = Color(0xffF29D38);
 
 const Color lightbrown = Color(0xffDDD5D5);
+
+const Color purple = Colors.purple;
